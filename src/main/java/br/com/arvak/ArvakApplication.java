@@ -8,10 +8,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.arvak.domain.Cidade;
+import br.com.arvak.domain.Cliente;
+import br.com.arvak.domain.Endereco;
 import br.com.arvak.domain.Estado;
 import br.com.arvak.domain.Grupo;
 import br.com.arvak.domain.Produto;
+import br.com.arvak.domain.enums.TipoCliente;
 import br.com.arvak.repositories.CidadeRepository;
+import br.com.arvak.repositories.ClienteRepository;
+import br.com.arvak.repositories.EnderecoRepository;
 import br.com.arvak.repositories.EstadoRepository;
 import br.com.arvak.repositories.GrupoRepository;
 import br.com.arvak.repositories.ProdutoRepository;
@@ -27,6 +32,10 @@ public class ArvakApplication implements CommandLineRunner {
 	private CidadeRepository cidadeRepository;
 	@Autowired
 	private EstadoRepository estadoRepository;
+	@Autowired
+	private ClienteRepository clienteRepository;
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ArvakApplication.class, args);
@@ -64,6 +73,16 @@ public class ArvakApplication implements CommandLineRunner {
 		
 		estadoRepository.save(Arrays.asList(est1, est2));	
 		cidadeRepository.save(Arrays.asList(cid1, cid2, cid3));		
+		
+		Cliente cli1 = new Cliente(null, "Dean Whinchester", "dean@google.com.br", "44433355566", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("25749687", "999863214"));
+		
+		Endereco end1 = new Endereco(null, "Avenida Paulista", "1521", "Apto. 85", "Consolação", "04258746", cli1, cid1);
+		Endereco end2 = new Endereco(null, "Avenida Engenheiro Carlos Berrini", "2220", "Bloco 1 Apto.43", "Cidade Monções", "98563478", cli1, cid2);
+		cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
+		
+		clienteRepository.save(Arrays.asList(cli1));
+		enderecoRepository.save(Arrays.asList(end1, end2));
 		
 	}
 
