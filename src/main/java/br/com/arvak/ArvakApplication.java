@@ -13,6 +13,7 @@ import br.com.arvak.domain.Cliente;
 import br.com.arvak.domain.Endereco;
 import br.com.arvak.domain.Estado;
 import br.com.arvak.domain.Grupo;
+import br.com.arvak.domain.ItemPedido;
 import br.com.arvak.domain.Pagamento;
 import br.com.arvak.domain.PagamentoComBoleto;
 import br.com.arvak.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import br.com.arvak.repositories.ClienteRepository;
 import br.com.arvak.repositories.EnderecoRepository;
 import br.com.arvak.repositories.EstadoRepository;
 import br.com.arvak.repositories.GrupoRepository;
+import br.com.arvak.repositories.ItemPedidoRepository;
 import br.com.arvak.repositories.PagamentoRepository;
 import br.com.arvak.repositories.PedidoRepository;
 import br.com.arvak.repositories.ProdutoRepository;
@@ -48,6 +50,8 @@ public class ArvakApplication implements CommandLineRunner {
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ArvakApplication.class, args);
@@ -111,7 +115,19 @@ public class ArvakApplication implements CommandLineRunner {
 		
 		pedidoRepository.save(Arrays.asList(ped1, ped2));
 		pagamentoRepository.save(Arrays.asList(pgto1, pgto2));
+		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 4500.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p2, 0.00, 2, 650.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p3, 100.00, 1, 7200.00);
 
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip2));
+		p3.getItens().addAll(Arrays.asList(ip3));
+		
+		itemPedidoRepository.save(Arrays.asList(ip1, ip2, ip3));
 		
 	}
 
