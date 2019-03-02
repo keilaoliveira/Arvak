@@ -1,6 +1,8 @@
 package br.com.arvak.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.arvak.domain.Grupo;
+import br.com.arvak.dto.GrupoDTO;
 import br.com.arvak.services.GrupoService;
 
 @RestController
@@ -46,6 +49,13 @@ public class GrupoResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {	
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<GrupoDTO>> findAll() {	
+		List<Grupo> list = service.findAll();
+		List<GrupoDTO> listDto = list.stream().map(obj -> new GrupoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);			
 	}
 	
 }

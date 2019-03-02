@@ -1,5 +1,7 @@
 package br.com.arvak.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,10 @@ public class GrupoService {
 		catch(DataIntegrityViolationException e){
 			throw new DataIntegrityException("Não é possível excluir um grupo que possui produtos vinculados!");
 		}
+	}
+	
+	public List<Grupo> findAll(){
+		return repo.findAll();
 	}
 
 }
