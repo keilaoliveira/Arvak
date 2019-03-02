@@ -22,4 +22,10 @@ public class GrupoService {
 		return obj;
 		
 	}
+	
+	public Grupo insert(Grupo obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
 }
