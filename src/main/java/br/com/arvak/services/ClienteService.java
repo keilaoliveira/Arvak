@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.arvak.domain.Cliente;
-import br.com.arvak.domain.Cliente;
 import br.com.arvak.dto.ClienteDTO;
 import br.com.arvak.repositories.ClienteRepository;
 import br.com.arvak.services.exceptions.DataIntegrityException;

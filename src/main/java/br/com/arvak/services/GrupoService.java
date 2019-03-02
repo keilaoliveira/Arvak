@@ -38,8 +38,9 @@ public class GrupoService {
 	}
 
 	public Grupo update(Grupo obj) {
-		find(obj.getId());
-		return repo.save(obj);
+		Grupo newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
 	public void delete(Integer id) {
@@ -65,4 +66,8 @@ public class GrupoService {
 		return new Grupo(objDto.getId(), objDto.getDescricaoGrupo());
 	}
 
+	private void updateData(Grupo newObj, Grupo obj) {
+		newObj.setDescricaoGrupo(obj.getDescricaoGrupo());
+	}
+	
 }
