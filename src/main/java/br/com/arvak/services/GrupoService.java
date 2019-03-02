@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.arvak.domain.Grupo;
+import br.com.arvak.dto.GrupoDTO;
 import br.com.arvak.repositories.GrupoRepository;
 import br.com.arvak.services.exceptions.DataIntegrityException;
 import br.com.arvak.services.exceptions.ObjectNotFoundException;
@@ -58,6 +59,10 @@ public class GrupoService {
 	public Page<Grupo> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	
+	public Grupo fromDTO(GrupoDTO objDto) {
+		return new Grupo(objDto.getId(), objDto.getDescricaoGrupo());
 	}
 
 }
