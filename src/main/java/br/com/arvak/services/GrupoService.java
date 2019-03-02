@@ -13,7 +13,7 @@ public class GrupoService {
 	@Autowired
 	private GrupoRepository repo;
 	
-	public Grupo buscar (Integer id) {
+	public Grupo find (Integer id) {
 		
 		Grupo obj = repo.findOne(id);
 		if (obj == null) {
@@ -27,5 +27,11 @@ public class GrupoService {
 		obj.setId(null);
 		return repo.save(obj);
 	}
+	
+	public Grupo update(Grupo obj) {
+		find(obj.getId());
+		return repo.save(obj);
+	}
+	
 	
 }

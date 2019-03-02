@@ -21,9 +21,9 @@ public class GrupoResource {
 	@Autowired
 	private GrupoService service;
 	
-	@RequestMapping(value="{id}" , method=RequestMethod.GET)
-	public ResponseEntity<?> buscaGrupo(@PathVariable Integer id) {	
-		Grupo obj = service.buscar(id);
+	@RequestMapping(value="/{id}" , method=RequestMethod.GET)
+	public ResponseEntity<Grupo> find(@PathVariable Integer id) {	
+		Grupo obj = service.find(id);
 		return ResponseEntity.ok().body(obj);			
 	}
 
@@ -33,6 +33,13 @@ public class GrupoResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/{id}" , method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Grupo obj, @PathVariable Integer id) {
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 	
 }
