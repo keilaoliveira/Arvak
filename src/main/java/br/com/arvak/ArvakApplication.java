@@ -62,6 +62,11 @@ public class ArvakApplication implements CommandLineRunner {
 		
 		Grupo gp1 = new Grupo (null, "Informática");
 		Grupo gp2 = new Grupo (null, "Telefonia"); 
+		Grupo gp3 = new Grupo (null, "Roupas"); 
+		Grupo gp4 = new Grupo (null, "Pet"); 
+		Grupo gp5 = new Grupo (null, "infantil"); 
+		Grupo gp6 = new Grupo (null, "Games"); 
+		Grupo gp7 = new Grupo (null, "Cultura e Entretenimento"); 
 		
 		Produto p1 = new Produto(null, "Notebook Dell I15", 4500.00);
 		Produto p2 = new Produto(null, "Fone de Ouvido Bluetooh JBL", 650.00);
@@ -74,7 +79,7 @@ public class ArvakApplication implements CommandLineRunner {
 		p2.getGrupos().addAll(Arrays.asList(gp1));
 		p3.getGrupos().addAll(Arrays.asList(gp1, gp2));				
 		
-		grupoRepository.save(Arrays.asList(gp1, gp2));
+		grupoRepository.save(Arrays.asList(gp1, gp2, gp3, gp4, gp5, gp6, gp7));
 		produtoRepository.save(Arrays.asList(p1, p2, p3));
 		
 		Estado est1 = new Estado(null, "São Paulo");
