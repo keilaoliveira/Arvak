@@ -2,21 +2,43 @@ package br.com.arvak.dto;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import br.com.arvak.services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message="Esse campo é de preenchimento obrigatório!")
+	@Length(min=5, max=100, message="O campo deve ter entre 5 e 100 caracteres")
 	private String nomeCliente;
-	private String email;
-	private String documentoCliente;
-	private Integer tipoCliente;
 	
+	@NotEmpty(message="Esse campo é de preenchimento obrigatório!")
+	@Email(message="E-mail inválido. Verifique!")
+	private String email;
+	
+	@NotEmpty(message="Esse campo é de preenchimento obrigatório!")
+	private String documentoCliente;
+	
+	private Integer tipoCliente;	
+	
+	@NotEmpty(message="Esse campo é de preenchimento obrigatório!")
 	private String logradouro;
+	@NotEmpty(message="Esse campo é de preenchimento obrigatório!")
 	private String numero;
+	
 	private String complemento;
 	private String bairro;
+	
+	@NotEmpty(message="Esse campo é de preenchimento obrigatório!")
 	private String cep;
 	
+	@NotEmpty(message="Esse campo é de preenchimento obrigatório!")
 	private String telefone1;
+	
 	private String telefone2;
 	private String telefone3;
 	
