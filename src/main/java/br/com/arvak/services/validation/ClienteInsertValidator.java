@@ -6,12 +6,20 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.arvak.domain.Cliente;
 import br.com.arvak.domain.enums.TipoCliente;
 import br.com.arvak.dto.ClienteNewDTO;
+import br.com.arvak.repositories.ClienteRepository;
 import br.com.arvak.resources.exception.FieldMessage;
 import br.com.arvak.services.validation.utils.BR;
 
 public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
+	
+	@Autowired
+	private ClienteRepository repo;
+	
 	@Override
 	public void initialize(ClienteInsert ann) {
 	}
@@ -27,6 +35,12 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 		if (objDto.getTipoCliente().equals(TipoCliente.PESSOAJURIDICA.getidTipoCliente()) && !BR.isValidCNPJ(objDto.getDocumentoCliente())) {
 			list.add(new FieldMessage("documentoCliente", "Cnpj inválido. Verifique!"));
 		}
+		
+		Cliente aux = repo.findByEmail(objDto.getEmail());
+		if (aux != null) {
+			list.add(new FieldMessage("email", "E-mail já existente!"));
+		}
+		
 		
 		for (FieldMessage e : list) {
 			context.disableDefaultConstraintViolation();
