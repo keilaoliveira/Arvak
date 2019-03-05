@@ -142,9 +142,9 @@ public class ArvakApplication implements CommandLineRunner {
 		pedidoRepository.save(Arrays.asList(ped1, ped2));
 		pagamentoRepository.save(Arrays.asList(pgto1, pgto2));
 		
-		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 4500.00);
-		ItemPedido ip2 = new ItemPedido(ped1, p2, 0.00, 2, 650.00);
-		ItemPedido ip3 = new ItemPedido(ped2, p3, 100.00, 1, 7200.00);
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
 
 		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
 		ped2.getItens().addAll(Arrays.asList(ip3));
