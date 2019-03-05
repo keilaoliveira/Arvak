@@ -61,26 +61,47 @@ public class ArvakApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		Grupo gp1 = new Grupo (null, "Informática");
-		Grupo gp2 = new Grupo (null, "Telefonia"); 
-		Grupo gp3 = new Grupo (null, "Roupas"); 
-		Grupo gp4 = new Grupo (null, "Pet"); 
-		Grupo gp5 = new Grupo (null, "infantil"); 
-		Grupo gp6 = new Grupo (null, "Games"); 
-		Grupo gp7 = new Grupo (null, "Cultura e Entretenimento"); 
+		Grupo gp2 = new Grupo (null, "Escritório"); 
+		Grupo gp3 = new Grupo (null, "Cama Mesa e Banho"); 
+		Grupo gp4 = new Grupo (null, "Eletrônicos"); 
+		Grupo gp5 = new Grupo (null, "Jardinagem"); 
+		Grupo gp6 = new Grupo (null, "Decoração"); 
+		Grupo gp7 = new Grupo (null, "Perfumaria"); 
 		
-		Produto p1 = new Produto(null, "Notebook Dell I15", 4500.00);
-		Produto p2 = new Produto(null, "Fone de Ouvido Bluetooh JBL", 650.00);
-		Produto p3 = new Produto(null, "Iphone XS Max 256 Gb", 7200.00);
+		Produto p1 = new Produto(null, "Computador", 2000.00);
+		Produto p2 = new Produto(null, "Impressora", 800.00);
+		Produto p3 = new Produto(null, "Mouse", 80.00);
+		Produto p4 = new Produto(null, "Mesa de Escritório", 300.00);
+		Produto p5 = new Produto(null, "Toalha", 50.00);
+		Produto p6 = new Produto(null, "Colcha", 200.00);
+		Produto p7 = new Produto(null, "TV true color", 1200.00);
+		Produto p8 = new Produto(null, "Regador", 800.00);
+		Produto p9 = new Produto(null, "Abajour", 100.00);
+		Produto p10 = new Produto(null, "Quadro", 180.00);
+		Produto p11 = new Produto(null, "Shampoo", 90.00);
 		
 		gp1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
-		gp2.getProdutos().addAll(Arrays.asList(p3));
+		gp2.getProdutos().addAll(Arrays.asList(p2, p4));
+		gp3.getProdutos().addAll(Arrays.asList(p5, p6));
+		gp4.getProdutos().addAll(Arrays.asList(p1, p2, p3, p7));
+		gp5.getProdutos().addAll(Arrays.asList(p8));
+		gp6.getProdutos().addAll(Arrays.asList(p9, p10));
+		gp7.getProdutos().addAll(Arrays.asList(p11));
 		
-		p1.getGrupos().addAll(Arrays.asList(gp1));
-		p2.getGrupos().addAll(Arrays.asList(gp1));
-		p3.getGrupos().addAll(Arrays.asList(gp1, gp2));				
+		p1.getGrupos().addAll(Arrays.asList(gp1, gp4));
+		p2.getGrupos().addAll(Arrays.asList(gp1, gp2, gp4));
+		p3.getGrupos().addAll(Arrays.asList(gp1, gp4));	
+		p4.getGrupos().addAll(Arrays.asList(gp2));
+		p5.getGrupos().addAll(Arrays.asList(gp3));
+		p6.getGrupos().addAll(Arrays.asList(gp3));
+		p7.getGrupos().addAll(Arrays.asList(gp4));
+		p8.getGrupos().addAll(Arrays.asList(gp5));
+		p9.getGrupos().addAll(Arrays.asList(gp6));
+		p10.getGrupos().addAll(Arrays.asList(gp6));
+		p11.getGrupos().addAll(Arrays.asList(gp7));
 		
 		grupoRepository.save(Arrays.asList(gp1, gp2, gp3, gp4, gp5, gp6, gp7));
-		produtoRepository.save(Arrays.asList(p1, p2, p3));
+		produtoRepository.save(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
 		
 		Estado est1 = new Estado(null, "São Paulo");
 		Estado est2 = new Estado(null, "Santa Catarina");
