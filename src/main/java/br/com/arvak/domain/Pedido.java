@@ -1,8 +1,11 @@
 package br.com.arvak.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -132,6 +135,30 @@ public class Pedido implements Serializable {
 		} else if (!idPedido.equals(other.idPedido))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		StringBuilder builder = new StringBuilder();
+		builder.append("\nPedido Realizado com Sucesso!");
+		builder.append("\n\nPedido número: #");
+		builder.append(getIdPedido());
+		builder.append("\nData Venda: ");
+		builder.append(sdf.format(getDataVenda()));
+		builder.append("\nCliente: ");
+		builder.append(getCliente().getNomeCliente());
+		builder.append("\nSituação do pagamento: ");
+		builder.append(getPagamento().getSituacao().getdescricaoPagamento());
+		builder.append("\n\nDetalhes:\n");
+		for (ItemPedido ip: getItens()) {
+			builder.append(ip.toString());
+		}
+		builder.append("\nValor total: ");
+		builder.append(nf.format(getValorTotal()));
+		builder.append("\n\nObrigado pela compra =) ! Volte Sempre! \n\n");
+		return builder.toString();
 	}
 
 	
