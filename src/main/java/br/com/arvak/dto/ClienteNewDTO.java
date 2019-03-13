@@ -23,7 +23,10 @@ public class ClienteNewDTO implements Serializable {
 	@NotEmpty(message="Esse campo é de preenchimento obrigatório!")
 	private String documentoCliente;
 	
-	private Integer tipoCliente;	
+	private Integer tipoCliente;
+	
+	@NotEmpty(message="Esse campo é de preenchimento obrigatório!")
+	private String senha;
 	
 	@NotEmpty(message="Esse campo é de preenchimento obrigatório!")
 	private String logradouro;
@@ -149,5 +152,13 @@ public class ClienteNewDTO implements Serializable {
 
 	public void setCidadeId(Integer cidadeId) {
 		this.cidadeId = cidadeId;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 }
