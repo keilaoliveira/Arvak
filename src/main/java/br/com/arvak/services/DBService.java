@@ -19,6 +19,7 @@ import br.com.arvak.domain.PagamentoComBoleto;
 import br.com.arvak.domain.PagamentoComCartao;
 import br.com.arvak.domain.Pedido;
 import br.com.arvak.domain.Produto;
+import br.com.arvak.domain.enums.Perfil;
 import br.com.arvak.domain.enums.SituacaoPagamento;
 import br.com.arvak.domain.enums.TipoCliente;
 import br.com.arvak.repositories.CidadeRepository;
@@ -112,16 +113,24 @@ public class DBService {
 		
 		estadoRepository.save(Arrays.asList(est1, est2));	
 		cidadeRepository.save(Arrays.asList(cid1, cid2, cid3));		
-		
-		Cliente cli1 = new Cliente(null, "Keila de Oliveira", "keila.oliver08@gmail.com", "44433355566", TipoCliente.PESSOAFISICA, pe.encode("123"));
+				
+		Cliente cli1 = new Cliente(null, "Noah Oliveira", "keila.oliveira08@hotmail.com", "19145008060", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("25749687", "999863214"));
+		
+		Cliente cli2 = new Cliente(null, "Keila de Oliveira", "keila.oliver08@gmail.com", "38879382080", TipoCliente.PESSOAFISICA, pe.encode("123"));
+		cli2.getTelefones().addAll(Arrays.asList("38749687", "988863214"));
+		cli2.addPerfil(Perfil.ADMIN);
 		
 		Endereco end1 = new Endereco(null, "Avenida Paulista", "1521", "Apto. 85", "Consolação", "04258746", cli1, cid1);
 		Endereco end2 = new Endereco(null, "Avenida Engenheiro Carlos Berrini", "2220", "Bloco 1 Apto.43", "Cidade Monções", "98563478", cli1, cid2);
-		cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
+		Endereco end3 = new Endereco(null, "Avenida Marquês de São Vicente", "1785", null, "Barra Funda", "99585000", cli2, cid1);
 		
-		clienteRepository.save(Arrays.asList(cli1));
-		enderecoRepository.save(Arrays.asList(end1, end2));
+		cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
+		cli2.getEnderecos().addAll(Arrays.asList(end3));
+		
+		
+		clienteRepository.save(Arrays.asList(cli1, cli2));
+		enderecoRepository.save(Arrays.asList(end1, end2, end3));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
