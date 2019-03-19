@@ -14,11 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.arvak.domain.Cidade;
 import br.com.arvak.domain.Cliente;
 import br.com.arvak.domain.Endereco;
+import br.com.arvak.domain.enums.Perfil;
 import br.com.arvak.domain.enums.TipoCliente;
 import br.com.arvak.dto.ClienteDTO;
 import br.com.arvak.dto.ClienteNewDTO;
 import br.com.arvak.repositories.ClienteRepository;
 import br.com.arvak.repositories.EnderecoRepository;
+import br.com.arvak.security.UserSS;
+import br.com.arvak.services.exceptions.AuthorizationException;
 import br.com.arvak.services.exceptions.DataIntegrityException;
 import br.com.arvak.services.exceptions.ObjectNotFoundException;
 
@@ -35,6 +38,11 @@ public class ClienteService {
 	private EnderecoRepository enderecoRepository;
 	
 	public Cliente find (Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("O acesso a esse perfil não é permitido!");
+		}
 		
 		Cliente obj = repo.findOne(id);
 		if (obj == null) {
