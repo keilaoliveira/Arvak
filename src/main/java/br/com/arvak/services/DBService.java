@@ -58,6 +58,47 @@ public class DBService {
 	
 	public void instantiateTestDataBase() throws ParseException {
 		
+		Grupo gp1 = new Grupo (null, "Eletrônicos");
+		Grupo gp2 = new Grupo (null, "Livros"); 
+		Grupo gp3 = new Grupo (null, "Jogos"); 
+		Grupo gp4 = new Grupo (null, "Decoração"); 
+		Grupo gp5 = new Grupo (null, "Roupas"); 
+		Grupo gp6 = new Grupo (null, "Esportes"); 
+		Grupo gp7 = new Grupo (null, "Perfumaria");
+		
+		Produto p1 = new Produto(null, "Notebook Dell i15", 4500.00);
+		Produto p2 = new Produto(null, "Iphone XS Max", 7999.00);
+		Produto p3 = new Produto(null, "Os segredos da mente milionária", 35.00);
+		Produto p4 = new Produto(null, "God of War - PlayStation 4", 143.00);
+		Produto p5 = new Produto(null, "GT Sport - PlayStation 4", 99.00);
+		Produto p6 = new Produto(null, "Almofada Bordada Forest", 50.00);
+		Produto p7 = new Produto(null, "Pôster com Moldura Danger Zombie Area", 49.90);
+		Produto p8 = new Produto(null, "Cardigan Drezzup Camuflado", 69.00);
+		Produto p9 = new Produto(null, "Malha Colcci Básica Masculina", 189.00);
+		Produto p10 = new Produto(null, "Kit Musculação 2 Barras Halteres", 250.00);
+		Produto p11 = new Produto(null, "Perfume Angel - Thierry Mugler - 100ml", 779.00);
+		
+		gp1.getProdutos().addAll(Arrays.asList(p1, p2));
+		gp2.getProdutos().addAll(Arrays.asList(p3));
+		gp3.getProdutos().addAll(Arrays.asList(p4, p5));
+		gp4.getProdutos().addAll(Arrays.asList(p6, p7));
+		gp5.getProdutos().addAll(Arrays.asList(p8, p9));
+		gp6.getProdutos().addAll(Arrays.asList(p10));
+		gp7.getProdutos().addAll(Arrays.asList(p11));
+		
+		p1.getGrupos().addAll(Arrays.asList(gp1));
+		p2.getGrupos().addAll(Arrays.asList(gp1));
+		p3.getGrupos().addAll(Arrays.asList(gp2));	
+		p4.getGrupos().addAll(Arrays.asList(gp3));
+		p5.getGrupos().addAll(Arrays.asList(gp3));
+		p6.getGrupos().addAll(Arrays.asList(gp4));
+		p7.getGrupos().addAll(Arrays.asList(gp4));
+		p8.getGrupos().addAll(Arrays.asList(gp5));
+		p9.getGrupos().addAll(Arrays.asList(gp5));
+		p10.getGrupos().addAll(Arrays.asList(gp6));
+		p11.getGrupos().addAll(Arrays.asList(gp7));
+		
+		/*
 		Grupo gp1 = new Grupo (null, "Informática");
 		Grupo gp2 = new Grupo (null, "Escritório"); 
 		Grupo gp3 = new Grupo (null, "Cama Mesa e Banho"); 
@@ -97,6 +138,7 @@ public class DBService {
 		p9.getGrupos().addAll(Arrays.asList(gp6));
 		p10.getGrupos().addAll(Arrays.asList(gp6));
 		p11.getGrupos().addAll(Arrays.asList(gp7));
+		*/
 		
 		grupoRepository.save(Arrays.asList(gp1, gp2, gp3, gp4, gp5, gp6, gp7));
 		produtoRepository.save(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
@@ -148,9 +190,9 @@ public class DBService {
 		pedidoRepository.save(Arrays.asList(ped1, ped2));
 		pagamentoRepository.save(Arrays.asList(pgto1, pgto2));
 		
-		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
-		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
-		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 4500.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 35.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 7999.00);
 
 		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
 		ped2.getItens().addAll(Arrays.asList(ip3));
